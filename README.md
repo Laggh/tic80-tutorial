@@ -18,13 +18,20 @@ Existem varias maneiras de usar o TIC80, você pode usar o site ou o aplicativo,
 ### Usando o site:
 1. Abra o site do [TIC80](https://tic80.com/create)
 2. Clique no botão `CLICK TO PLAY`
-![Imagem do TIC80](image.png)
+![Imagem do TIC80](imagem01.png)
 
 ### Usando o aplicativo:
 1. Abra o site do [TIC80](https://tic80.com/create)
 2. desça a pagina até achar a area de Downloads
 3. Baixe o aplicativo para o seu dispositivo, Windows, Mac, Linux, Android (IOS não é suportado)
 4. Se o arquivo estiver em um zip, extraia ele
+
+## Usando o basico do TIC80:
+Ao abrir o TIC80, você verá uma interface assim:
+![Imagem do TIC80](imagem02.png)
+
+Se você digitar `help` no terminal você verá algumas categorias para ajuda, como `version`, `api`, `buttons`, `keys`, etc...
+para ver a ajuda de uma categoria, digite `help CATEGORIA` (ex: `help api`)
 
 
 
