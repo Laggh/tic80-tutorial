@@ -66,3 +66,12 @@ Aperte `[CTRL]+[R]` para rodar o codigo, você verá um personagem se movendo na
 Agora aperte `[ESC]` para abrir o menu, você verá varias opções como `RESUME GAME`, `RESET GAME`, `CLOSE GAME` e `OPTIONS`, você pode usar as setas para navegar e `[ENTER]` para selecionar
 ![Imagem do TIC80](imagem04.png)
 
+## Introdução a Lua: sintaxe basica
+Lua é uma linguagem de programação simples e poderosa, ela é usada em varios jogos e programas, ela é uma linguagem de script, oque significa que você não precisa compilar o codigo, você pode simplesmente escrever e rodar.
+Porem agora vamos finalmente programar, abra o terminal e digite `new lua` para criar um novo cartucho, agora digite `edit` para abrir o editor, você verá o mesmo codigo de antes, apague tudo e escreva o seguinte codigo:
+```lua
+function TIC()
+    cls(0) -- limpa a tela
+    print("ola mundo") -- escreve "ola mundo" na tela
+end
+```
