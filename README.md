@@ -33,5 +33,36 @@ Ao abrir o TIC80, você verá uma interface assim:
 Se você digitar `help` no terminal você verá algumas categorias para ajuda, como `version`, `api`, `buttons`, `keys`, etc...
 para ver a ajuda de uma categoria, digite `help CATEGORIA` (ex: `help api`)
 
+## Criando o seu primeiro cartucho:
+Para cria um novo cartucho digite `new lua` no terminal, isso criará um novo cartucho com a lingua de programação lua, você receera a seguinte mensagem:
+```
+new cart has been created
+```
+Agora você pode começar a programar, digite `edit` ou aperte `[ESC]` para abrir o editor, você verá um codigo assim:
+```lua 
+(...)
 
+t=0
+x=96
+y=24
+
+function TIC()
+
+	if btn(0) then y=y-1 end
+	if btn(1) then y=y+1 end
+	if btn(2) then x=x-1 end
+	if btn(3) then x=x+1 end
+
+	cls(13)
+	spr(1+t%60//30*2,x,y,14,3,0,0,2,2)
+	print("HELLO WORLD!",84,84)
+	t=t+1
+end
+```
+
+Aperte `[CTRL]+[R]` para rodar o codigo, você verá um personagem se movendo na tela, você pode usar as setas para mover o personagem
+![Imagem do TIC80](imagem03.png)
+
+Agora aperte `[ESC]` para abrir o menu, você verá varias opções como `RESUME GAME`, `RESET GAME`, `CLOSE GAME` e `OPTIONS`, você pode usar as setas para navegar e `[ENTER]` para selecionar
+![Imagem do TIC80](imagem04.png)
 
