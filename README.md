@@ -85,3 +85,19 @@ Todo programa do TIC80 PRECISA da função `TIC()`, essa funçao roda 60 vezes p
 
 Agora, tente editar os codigos, mude o texto para outra coisa como "ola amigos" ou "ola tic80", porem lembre se que qualquer texto deve estar entre aspas. Ou mude o numero da função `cls()` para mudar a cor do fundo, você pode usar qualquer numero de 0 a 15. 
 
+## Aprendendo mais sobre as funçoes
+Vamos aprender um pouco mais sobre as funçoes, vamos descobrir mais sobre a função `print()`, abra o terminal e digite `help print`, você verá a seguinte mensagem:
+```	
+print(text x=0 y=0 color=15 fixed=false 
+scale=1 smallfont=false) -> width
+(...)
+```
+Porem, oque isso siginifica? Esses são os **Parametros** da função `print()`, parametros são valores que você passa para a função, você já usou um desses parametros, o primeiro, chamado `text` ele é o texto que deve ser desenhado, os outros parametros são opcionais, porem dão mais controle sobre a função, vamos testar o parametro `x` e `y`, abra o editor e escreva o seguinte codigo:
+```lua	 
+function TIC()
+	cls(0) -- limpa a tela
+	print("ola mundo", 10, 10) -- escreve "ola mundo" na tela na posição 10, 10
+end
+```
+Aperte `[CTRL]+[R]` para rodar o codigo, você verá "ola mundo" escrito em uma posição diferente, tente editar esses dois valores e veja oque acontece.
+
