@@ -143,3 +143,67 @@ if(document.getElementById('resposta').value == 7747){
 	document.getElementById('acertou').innerHTML = 'Tente novamente'
 }
 ">Verificar</button>
+
+## Variaveis
+Variaveis são tipo "caixinhas" que guardam valores, você pode usar esses valores em qualquer lugar do seu codigo, vamos ver um exemplo para situações uteis dela:
+```lua
+function TIC()
+	print("ola mundo", 10, 10)
+	print("ola mundo", 10, 20)
+	print("ola mundo", 10, 30)
+	print("ola mundo", 10, 40) 
+end
+```
+Vamos supor que você quer mudar o texto de todos os `print()`, você teria que mudar todos os textos, um por um, se já é chato mudar 4, imagina umas 100 linhas de codigo, é ai que as variaveis entram, você pode guardar o texto em uma variavel e usar ela em todos os `print()`, vamos ver um exemplo:
+```lua
+function TIC()
+	texto = "ola mundo"
+	print(texto, 10, 10)
+	print(texto, 10, 20)
+	print(texto, 10, 30)
+	print(texto, 10, 40) 
+end
+```
+Esse codigo faz a mesma coisa que o anterior, porem é mais facil de editar, você só precisa mudar o texto uma vez, tente mudar o texto da variavel `texto` e veja o resultado.
+
+### Guardar valores
+Os valores de variaveis são uteis não só para reutilizar em varios lugares, mas tambem para guardar valores que podem mudar, como a posição de um personagem, a vida de um inimigo, etc... Por enquanto, vamos fazer um exemplo simples, um contador que aumenta varias vezes por segundo
+```lua
+contador = 0
+function TIC()
+	cls(0) -- limpa a tela
+	contador = contador + 1
+	print(contador, 10, 10)
+end
+```
+Primeiramente, antes de usar uma variavel, nós temos que **declarar** ela, basicamente estamos falando para o computador "Ei, eu vou usar uma variavel chamada `contador`, então se prepare", a declaração de variaveis é feita assim:
+```lua
+nome_da_variavel = valor
+``` 
+
+Depois disso, falamos para o computador criar a variavel antes de rodar a função `TIC()`, agora, a variavel `contador` é criada e tem o valor de `0`, na função `TIC()`, estamos falando para o computador calcular quanto é `contador + 1` e guardar o resultado na variavel `contador`, isso terá o efeito de aumentar o contador em 1 a cada vez que a função `TIC()` rodar, veja a tabela explicando
+| Rodada | Valor de contador | Contador + 1 | Oque acontece |
+|--------|-------------------|--------------|---------------|
+| 1      | 0                 | 0 + 1 = 1    | contador = 1  |
+| 2      | 1                 | 1 + 1 = 2    | contador = 2  |
+| 3      | 2                 | 2 + 1 = 3    | contador = 3  |
+| 4      | 3                 | 3 + 1 = 4    | contador = 4  |
+
+E após isso, finalmente estamos escrevendo o valor de `contador` na tela, tente rodar o codigo e veja o contador aumentando, desta maneira:
+![Imagem do TIC80](gif01.gif)
+
+### Testes interessantes
+Agora que você viu o contador funcionando, vamos fazer alguns testes e analizar o resultado, tente fazer esses testes:
+1. Mude o valor de `contador` para `contador = contador + 2`, oque acontece?
+2. Mude o valor de `contador` para `contador = contador - 1`, oque acontece?
+3. Mude o valor de `contador` para `contador = contador * 2`, oque acontece?
+4. Mude o valor de `contador` para `contador = contador / 2`, oque acontece?
+
+Ou alguns testes sobre o proprio funcionamento do programa
+1. Declare a variavel dentro da função `TIC()`, oque acontece?
+2. Não declare a variavel, oque acontece?
+3. Remova a linha `contador = contador + 1`, oque acontece?
+4. Remova a linha `cls(0)`, oque acontece?
+
+
+
