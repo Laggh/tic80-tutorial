@@ -101,3 +101,45 @@ end
 ```
 Aperte `[CTRL]+[R]` para rodar o codigo, você verá "ola mundo" escrito em uma posição diferente, tente editar esses dois valores e veja oque acontece.
 
+## Operadores matematicos
+Lua tem varios operadores matematicos, os mais comuns são `+`, `-`, `*`, `/`, `^` e `%`, vamos aprender um pouco sobre eles, abra o editor e escreva o seguinte codigo:
+```lua
+function TIC()
+	cls(0) -- limpa a tela
+	print(1+1, 10, 10) -- escreve 2 na tela
+	print(2-1, 10, 20) -- escreve 1 na tela
+	print(2*2, 10, 30) -- escreve 4 na tela
+	print(4/2, 10, 40) -- escreve 2 na tela
+	print(2^3, 10, 50) -- escreve 8 na tela
+	print(5%2, 10, 60) -- escreve 1 na tela
+end
+``` 
+Ao rodar, você deve obter esse resultado:
+![Imagem do TIC80](imagem06.png)
+
+Não se preocupe, irei explicar oque está acontecendo:
+
+1. Na linha 3, `print(1+1, 10, 10)` está somando **1 mais 1** e escrevendo o resultado na tela, o resultado é **2**, os outros parametros são a posição do texto na tela
+2. Na linha 4, `print(2-1, 10, 20)` está subtraindo **2 menos 1** e escrevendo o resultado na tela, o resultado é **1**
+3. Na linha 5, `print(2*2, 10, 30)` está multiplicando **2 vezes 2** e escrevendo o resultado na tela, o resultado é **4**
+4. Na linha 6, `print(4/2, 10, 40)` está dividindo **4 dividido por 2** e escrevendo o resultado na tela, o resultado é **2**
+5. Na linha 7, `print(2^3, 10, 50)` está elevando **2 a terceira potencia (2 ao cubo)** e escrevendo o resultado na tela, o resultado é **8**
+6. Na linha 8, `print(5%2, 10, 60)` está pegando o **resto da divisão de 5 por 2** e escrevendo o resultado na tela, ele primeiro tenta dividir 5 por 2, o resultado é 2 com resto 1, então ele pega o resto e escreve na tela, que é **1**
+
+### Desafio:
+Agora que você entendeu os operadores matematicos, tente fazer algumas operações, descubra quanto é **127*61** apenas usando o tic 80, aqui está um codigo para te ajudar:
+```lua
+function TIC()
+	cls(0) -- limpa a tela
+	print(2+2, 10, 10) -- escreve o resultado de 127*61 na tela
+end
+```
+<div id="acertou"> Digite uma resposta para ver se você acertou </div>
+<input type="text" id="resposta" placeholder="Resposta">
+<button onclick="
+if(document.getElementById('resposta').value == 7747){
+	document.getElementById('acertou').innerHTML = 'Parabens, você acertou!'
+}else{
+	document.getElementById('acertou').innerHTML = 'Tente novamente'
+}
+">Verificar</button>
