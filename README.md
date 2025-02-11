@@ -183,7 +183,7 @@ nome_da_variavel = valor
 
 Depois disso, falamos para o computador criar a variavel antes de rodar a função `TIC()`, agora, a variavel `contador` é criada e tem o valor de `0`, na função `TIC()`, estamos falando para o computador calcular quanto é `contador + 1` e guardar o resultado na variavel `contador`, isso terá o efeito de aumentar o contador em 1 a cada vez que a função `TIC()` rodar, veja a tabela explicando
 | Rodada | Valor de contador | Contador + 1 | Oque acontece |
-|--------|-------------------|--------------|---------------|
+|--|--|--|--|
 | 1      | 0                 | 0 + 1 = 1    | contador = 1  |
 | 2      | 1                 | 1 + 1 = 2    | contador = 2  |
 | 3      | 2                 | 2 + 1 = 3    | contador = 3  |
@@ -325,6 +325,26 @@ end
 ```
 ![Imagem do TIC80](imagem07.png)
 
+## Mais funções de desenho: `rect()`
+Agora vamos ver a função `rect()`, essa função é usada para desenhar retangulos, veja a documentação dela digitando `help rect` no terminal:
+```
+---=== API ===---
+rect(x y w h color)
+```
+| Parametro | Descrição | Valor padrão |
+|--|--|--|
+| `x` | Posição X do retangulo | Nenhuma |
+| `y` | Posição Y do retangulo | Nenhuma |
+| `w` | Largura do retangulo | Nenhuma |
+| `h` | Altura do retangulo | Nenhuma |
+| `color` | Cor do retangulo | Nenhuma |
+
+Essa função desenha um retangulo na tela, ela tem 5 parametros, `x` e `y` são a posição do retangulo, `w` é a largura do retangulo, `h` é a altura do retangulo e `color` é a cor do retangulo, **todas esses parametros são obrigatorios** e devem ser passados na ordem certa, tente fazer um retangulo na tela:
+```lua
+x = 32
+y = 32
+w = 64	
+h = 32
 
 
 
