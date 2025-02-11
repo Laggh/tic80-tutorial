@@ -346,6 +346,12 @@ y = 32
 w = 64	
 h = 32
 
+function TIC()
+	cls(0) -- limpa a tela
+	rect(x, y, w, h, 1) -- desenha um retangulo na posição 32, 32 com largura 64, altura 32 e cor 1 (Roxo)
+end
+```
+
 
 
 
