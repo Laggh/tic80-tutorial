@@ -75,3 +75,13 @@ function TIC()
     print("ola mundo") -- escreve "ola mundo" na tela
 end
 ```
+Aperte `[CTRL]+[R]` para rodar o codigo, você verá "ola mundo" na tela, dessa maneira:
+![Imagem do TIC80](imagem05.png)
+
+### Agora vamos explicar o codigo:
+Todo programa do TIC80 PRECISA da função `TIC()`, essa funçao roda 60 vezes por segundo, ela é o coração do seu jogo, tudo que está entre ela e o `end` é executado 60 vezes por segundo.
+- `cls(0)` limpa a tela, é oque faz o fundo preto atrás do texto
+- `print("ola mundo")` escreve "ola mundo" na tela
+
+Agora, tente editar os codigos, mude o texto para outra coisa como "ola amigos" ou "ola tic80", porem lembre se que qualquer texto deve estar entre aspas. Ou mude o numero da função `cls()` para mudar a cor do fundo, você pode usar qualquer numero de 0 a 15. 
+
