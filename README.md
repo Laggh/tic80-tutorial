@@ -184,10 +184,10 @@ nome_da_variavel = valor
 Depois disso, falamos para o computador criar a variavel antes de rodar a função `TIC()`, agora, a variavel `contador` é criada e tem o valor de `0`, na função `TIC()`, estamos falando para o computador calcular quanto é `contador + 1` e guardar o resultado na variavel `contador`, isso terá o efeito de aumentar o contador em 1 a cada vez que a função `TIC()` rodar, veja a tabela explicando
 | Rodada | Valor de contador | Contador + 1 | Oque acontece |
 |--|--|--|--|
-| 1      | 0                 | 0 + 1 = 1    | contador = 1  |
-| 2      | 1                 | 1 + 1 = 2    | contador = 2  |
-| 3      | 2                 | 2 + 1 = 3    | contador = 3  |
-| 4      | 3                 | 3 + 1 = 4    | contador = 4  |
+| 1 | 0 | 0 + 1 = 1 | contador = 1 |
+| 2 | 1 | 1 + 1 = 2 | contador = 2 |
+| 3 | 2 | 2 + 1 = 3 | contador = 3 |
+| 4 | 3 | 3 + 1 = 4 | contador = 4 |
 
 E após isso, finalmente estamos escrevendo o valor de `contador` na tela, tente rodar o codigo e veja o contador aumentando, desta maneira:
 ![Imagem do TIC80](gif01.gif)
@@ -212,8 +212,8 @@ Nós vimos a função `cls()` e `print()`, porem bem por cima, agora vamos se ap
 cls(color=0)
 ```	
 | Parametro | Descrição | Valor padrão |
-|-----------|-----------|--------------|
-| `color`   | Cor do fundo para ser pintada | `0` |
+|--|--|--|
+| `color` | Cor do fundo para ser pintada | `0` |
 
 Essa função limpa a tela, porem, ela tem um parametro, `color`. Nos exemplos anteriores, nós usamos `cls(0)`, porem você pode mudar o valor para mudar a cor do fundo, tente mudar o valor de `cls()` e veja o resultado, aqui está um exemplo:
 ```lua
@@ -223,23 +223,23 @@ end
 ```
 No TIC80, as cores são representadas por numeros, de 0 a 15, cada numero representa uma cor, aqui está uma tabela com as cores e seus numeros:
 | Numero | Cor |
-|--------|-----|
-| `0`      | Preto ou Transparente |
-| `1`      | Roxo |
-| `2`      | Vermelho |
-| `3`      | Laranja |
-| `4`      | Amarelo |
-| `5`      | Verde Claro |
-| `6`      | Verde |
-| `7`      | Verde Escuro |
-| `8`      | Azul Escuro |
-| `9`      | Azul |
-| `10`     | Azul Claro |
-| `11`     | Ciano |
-| `12`     | Branco |
-| `13`     | Cinza Claro |
-| `14`     | Cinza |
-| `15`     | Cinza Escuro |
+|--|--|
+| `0` | Preto ou Transparente |
+| `1` | Roxo |
+| `2` | Vermelho |
+| `3` | Laranja |
+| `4` | Amarelo |
+| `5` | Verde Claro |
+| `6` | Verde |
+| `7` | Verde Escuro |
+| `8` | Azul Escuro |
+| `9` | Azul |
+| `10 | Azul Claro |
+| `11 | Ciano |
+| `12` | Branco |
+| `13` | Cinza Claro |
+| `14` | Cinza |
+| `15` | Cinza Escuro |
 
 Teste mudar o valor de `cls()` e veja o resultado, tente usar numeros de 0 a 15
 
