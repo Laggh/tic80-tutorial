@@ -205,5 +205,127 @@ Ou alguns testes sobre o proprio funcionamento do programa
 3. Remova a linha `contador = contador + 1`, oque acontece?
 4. Remova a linha `cls(0)`, oque acontece?
 
+## Mais funções de desenho: `cls()`
+Nós vimos a função `cls()` e `print()`, porem bem por cima, agora vamos se aprofundar mais nessas funçoes, vamos começar com a função `cls()`, veja a documentação dela digitando `help cls` no terminal:
+```
+---=== API ===---
+cls(color=0)
+```	
+| Parametro | Descrição | Valor padrão |
+|-----------|-----------|--------------|
+| `color`   | Cor do fundo para ser pintada | `0` |
+
+Essa função limpa a tela, porem, ela tem um parametro, `color`. Nos exemplos anteriores, nós usamos `cls(0)`, porem você pode mudar o valor para mudar a cor do fundo, tente mudar o valor de `cls()` e veja o resultado, aqui está um exemplo:
+```lua
+function TIC()
+	cls(1) -- limpa a tela com a cor 1
+end
+```
+No TIC80, as cores são representadas por numeros, de 0 a 15, cada numero representa uma cor, aqui está uma tabela com as cores e seus numeros:
+| Numero | Cor |
+|--------|-----|
+| `0`      | Preto ou Transparente |
+| `1`      | Roxo |
+| `2`      | Vermelho |
+| `3`      | Laranja |
+| `4`      | Amarelo |
+| `5`      | Verde Claro |
+| `6`      | Verde |
+| `7`      | Verde Escuro |
+| `8`      | Azul Escuro |
+| `9`      | Azul |
+| `10`     | Azul Claro |
+| `11`     | Ciano |
+| `12`     | Branco |
+| `13`     | Cinza Claro |
+| `14`     | Cinza |
+| `15`     | Cinza Escuro |
+
+Teste mudar o valor de `cls()` e veja o resultado, tente usar numeros de 0 a 15
+
+### Testes interessantes
+1. Agora tente colocar numeros maiore que 15, oque acontece?
+2. Coloque numeros negativos, oque acontece?
+3. Coloque numeros decimais, oque acontece?
+4. Coloque letras, oque acontece?
+
+### Desafio
+Vamos fazer um desafio, tente fazer um codigo que muda a cor do fundo a cada segundo, lembre dessas coisas:
+- A função `TIC()` roda 60 vezes por segundo
+- A função `cls()` muda a cor do fundo
+- Se você passar um numero decimal para a função `cls()`, ele vai arredondar para o numero inteiro mais proximo
+- se você passar um numero mais que 15 ou menos que 0, ele vai ser convertido para 0 ou 15 respectivamente
+- Você pode usar variaveis para guardar valores
+
+Aqui está um codigo para te ajudar:
+```lua
+contador = 0 -- Cria a variavel contador
+function TIC()
+	contador = contador + 1 -- Aumenta o contador
+	cls(contador/60) -- Muda a cor do fundo
+end
+```
+
+## Mais funções de desenho: `print()`
+Agora vamos falar sobre a função `print()`, essa função é usada para escrever texto na tela, veja a documentação dela digitando `help print` no terminal:
+```
+---=== API ===---
+print(text x=0 y=0 color=15 fixed=false
+scale=1 smallfont=false) -> width
+```
+| Parametro | Descrição | Valor padrão |
+|-----------|-----------|--------------|
+| `text`    | Texto a ser escrito | `""`  |
+| `x`       | Posição X do texto | `0`   |
+| `y`       | Posição Y do texto | `0`   |
+| `color`   | Cor do texto | `15` (Cinza escuro)  |
+| `fixed`   | Se o texto deve ser fixo | `false`  |
+| `scale`   | Escala do texto | `1`  |
+| `smallfont` | Se o texto deve ser pequeno | `false`  |
+
+Antes, nós usamos apenas os parametros `text`, `x` e `y`, porem, agora, vamos usar o parametro `color`, para mudar a cor do texto, tente mudar o valor de `color` e veja o resultado, aqui está um exemplo:
+```lua
+cor = 1
+function TIC()
+	-- escreve "ola mundo" na posição 10, 10 com a cor 1 (Roxo)
+	print("ola mundo", 10, 10, cor) 
+end
+```
+Teste mudar o valor de `cor` e veja o resultado, tente usar numeros de 0 a 15
+
+## Mais funções de desenho: `circ()`
+Agora vamos finalmente ver uma função nova, a função `circ()`, essa função é usada para desenhar circulos, veja a documentação dela digitando `help circ` no terminal:
+```
+---=== API ===---
+circ(x y radius color)
+```
+| Parametro | Descrição | Valor padrão |
+|-----------|-----------|--------------|
+| `x`       | Posição X do circulo | Nenhuma |
+| `y`       | Posição Y do circulo | Nenhuma |
+| `radius`  | Raio do circulo | Nenhuma |
+| `color`   | Cor do circulo | Nenhuma |
+
+Essa função desenha um circulo na tela, ela tem 4 parametros, `x` e `y` são a posição do circulo, `radius` é o raio (tamanho) do circulo e `color` é a cor do circulo, **todas esses parametros são obrigatorios** e devem ser passados na ordem certa, tente fazer um circulo na tela, aqui está um exemplo:
+```lua
+function TIC()
+	cls(0) -- limpa a tela
+	circ(64, 64, 32, 1) -- desenha um circulo na posição 64, 64 com raio 32 e cor 1 (Roxo)
+end
+```
+
+### A função `circb`
+A função `circb()` é parecida com a função `circ()`, porem, ela desenha apenas a borda do circulo, veja o exemplo:
+```lua
+function TIC()
+	cls(0) -- limpa a tela
+	circ(64, 64, 16, 1) -- desenha um circulo na posição 64, 64 com raio 32 e cor 1 (Roxo)
+	circb(128, 64, 16, 2) -- desenha a borda do circulo na posição 64, 64 com raio 32 e cor 2 (Vermelho)
+end
+```
+![Imagem do TIC80](imagem07.png)
+
+
+
 
 
