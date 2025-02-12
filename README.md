@@ -352,6 +352,49 @@ function TIC()
 end
 ```
 
+## condicionais
+Condicionais, ou "ifs" são uma das bases da programação, eles são usados para fazer decisões, como "Se a vida do jogador for menor que 0, então ele morreu", ou "Se o jogador apertar o botão "A", ele pula", vamos ver um exemplo simples de um if:
+```lua
+vida = 100
+function TIC()
+	if vida > 0 then
+		print("O jogador está vivo", 10, 10)
+	end
+end
+```
+Antes de qualquer coisa, temos que analisar a sintaxe do if, ele é feito assim:
+```lua
+if CONDIÇÃO then
+	-- codigo
+end
+```
+O if começa com a palavra chave `if`, seguido de uma condição (como `vida > 0`), depois disso, temos a palavra chave `then`, que indica que o bloco de codigo do if começou, depois disso, temos os codigos que irão ser rodados se a condição for verdadeira, depois temos a palavra chave `end`, que indica que o bloco de codigo do if terminou, se a condição for falsa, o codigo dentro do if é ignorado.
+
+Agora voltando para o codigo anterior, rode ele, vocé verá "O jogador está vivo" na tela, pois no if, verificamos se `vida` é maior que 0, e como `vida` é 100, a condição é verdadeira, então o codigo é rodado, agora tente mudar o valor de vida para outro valor, como 0 por exemplo, e veja o resultado.
+
+### O uso do `else`
+O `else` é usado para rodar um bloco de codigo se a condição do if for falsa, dessa maneira:
+```lua
+if CONDIÇÂO then
+	-- codigo da condição verdadeira
+else
+	-- codigo da condição falsa
+end
+```
+Agora vamos editar o codigo anterior para usar o `else`:
+```lua
+vida = 100
+function TIC()
+	if vida > 0 then
+		print("O jogador está vivo", 10, 10)
+	else
+		print("O jogador morreu", 10, 10)
+	end
+end
+```
+
+
+
 
 
 
