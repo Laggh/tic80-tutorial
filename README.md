@@ -392,6 +392,75 @@ function TIC()
 	end
 end
 ```
+Agora, se a vida for maior que 0, ele escreve "O jogador está vivo", se não, ele escreve "O jogador morreu", tente mudar o valor de vida e veja o resultado.
+
+## Operadores Logicos Matematicos
+No ultimo codigo, nós utilizamos o operador `>` (maior que), porem ele não é o unico operador logico, existem varios outros, veja a tabela dos principais
+| Operador | Descrição | Exemplo | Resultado |
+|--|--|--|--|
+| `>` | Maior que | `5 > 3` | Verdadeiro |
+| `>=` | Maior ou igual a | `5 >= 5` | Verdadeiro |
+| `<` | Menor que | `5 < 3` | Falso |
+| `<=` | Menor ou igual a | `5 <= 3` | Falso |
+| `==` | Igual a | `5 == 3` | Falso |
+| `~=` | Diferente de | `5 ~= 3` | Verdadeiro |
+
+vamos fazer um exemplo simple para testar esses operadores e variaves:
+```lua
+x = 5
+y = 3
+function TIC()
+	cls(0) --não se esqueça de limpar a tela
+
+	if x > y then --condição
+		print("x é maior que y", 10, 10) --codigo se a condição for verdadeira
+	end
+	if x < y then --condição
+		print("x é menor que y", 10, 20) --codigo se a condição for verdadeira
+	end
+	if x == y then --condição
+		print("x é igual a y", 10, 30) --codigo se a condição for verdadeira
+	end
+	if x ~= y then --condição
+		print("x é diferente de y", 10, 40) --codigo se a condição for verdadeira
+	end
+
+end
+```
+Tente mudar os valores de `x` e `y` e veja o resultado, tente usar elses tambem para testar o codigo
+
+### Desafio
+Agora que você entende condicionais e operadores logicos e funçoes de desenho, tente fazer um codigo que desenha um circulo, que vai para a direta, e quando ele chegar no final da tela, ele volta para o começo, lembre se dessas coisas:
+1. A largura da tela é `240px`
+2. A função `circ()` desenha um circulo e tem os parametros `(x, y, raio, cor)`
+3. para somar um valor a uma variavel, você pode usar `variavel = variavel + valor`
+4. para mover algo para a **direita** você aumenta o seu `x`, para mover para a **esquerda** você diminui o seu `x`
+5. Se o circulo passar do final da tela, você pode usar um if para mudar a posição dele para o começo da tela
+6. Lembre-se de definir as variaveis **FORA** da função `TIC()`
+
+> [!WARNING]
+> A seguir está uma solução para o desafio, tente fazer o desafio antes de ver a solução, a melhor maneira de aprender é tentando, porem sé precisar de ajuda, a solução está aqui
+
+```lua
+x = 0
+LARGURA = 240
+function TIC()
+	cls(0)
+	circ(x, 64, 16, 1)
+	x = x + 1
+	if x > LARGURA then
+		x = 0
+	end
+end
+```
+
+## Nomes de variaveis e constantes
+
+
+
+
+
+
 
 
 
