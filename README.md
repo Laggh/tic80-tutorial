@@ -453,6 +453,7 @@ function TIC()
 	end
 end
 ```
+O uso da **constante** (iremos aprender sobre isso mais tarde) `LARGURA` é para facilitar a edição do codigo.
 
 ## Nomes de variaveis e constantes
 
