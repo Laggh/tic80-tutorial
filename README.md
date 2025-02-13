@@ -358,7 +358,7 @@ Condicionais, ou "ifs" são uma das bases da programação, eles são usados par
 vida = 100
 function TIC()
 	if vida > 0 then
-		print("O jogador está vivo", 10, 10)
+		print("O jogador esta vivo", 10, 10)
 	end
 end
 ```
@@ -386,7 +386,7 @@ Agora vamos editar o codigo anterior para usar o `else`:
 vida = 100
 function TIC()
 	if vida > 0 then
-		print("O jogador está vivo", 10, 10)
+		print("O jogador esta vivo", 10, 10)
 	else
 		print("O jogador morreu", 10, 10)
 	end
@@ -413,16 +413,16 @@ function TIC()
 	cls(0) --não se esqueça de limpar a tela
 
 	if x > y then --condição
-		print("x é maior que y", 10, 10) --codigo se a condição for verdadeira
+		print("x e maior que y", 10, 10) --codigo se a condição for verdadeira
 	end
 	if x < y then --condição
-		print("x é menor que y", 10, 20) --codigo se a condição for verdadeira
+		print("x e menor que y", 10, 20) --codigo se a condição for verdadeira
 	end
 	if x == y then --condição
-		print("x é igual a y", 10, 30) --codigo se a condição for verdadeira
+		print("x e igual a y", 10, 30) --codigo se a condição for verdadeira
 	end
 	if x ~= y then --condição
-		print("x é diferente de y", 10, 40) --codigo se a condição for verdadeira
+		print("x e diferente de y", 10, 40) --codigo se a condição for verdadeira
 	end
 
 end
@@ -512,6 +512,7 @@ raio = 12
 cor = 5
 larguraTela = 240
 function TIC()
+	cls(0)
 	x = x + 1
 	if x > larguraTela then
 		x = 0
@@ -535,7 +536,7 @@ Constantes são como variaveis, caixinhas que armazenam valores, porem elas são
 LARGURA_TELA = 240
 function TIC()
 	cls(0)
-	print("A largura da tela é ", 10, 10)
+	print("A largura da tela e ", 10, 10)
 	print(LARGURA_TELA, 10, 20)
 end
 ```
@@ -568,6 +569,17 @@ function TIC()
 end
 ```
 Dessa maneira, você pode usar o nome da cor ao inves do numero, oque deixa o codigo mais facil de entender, porem, você pode usar numeros se quiser, porem é bom usar constantes para facilitar a leitura do codigo
+
+## Interação do jogador
+Você provavelmente deve estar se perguntando "ok, eu sei como desenhar coisas, sei como verificar condições, porem como que eu faço meu jogo ser um jogo?", A resposta é interação do jogador, no TIC80 você tem 3 metodos de interação:
+
+1. **Botões** - O TIC80 tem 8 botões, `cima`,`baixo`,`esquerda`,`direita`,`A`,`B`,`X` e `Y`, no celular, esses botões aparecem na tela, no computador você pode usar seu teclado para simular eles.
+
+2. **Teclado** - Você pode usar teclado para interagir com o TIC80, tendo suporte para 94 teclas
+
+3. **Mouse** - Você pode usar o mouse para interagir tambem, no celular você usa o mouse clicando na tela
+
+Agora vamos ver com mais detalhe como usar essas interações
 
 ## Botões
 
