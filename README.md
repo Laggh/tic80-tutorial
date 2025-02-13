@@ -234,8 +234,8 @@ No TIC80, as cores são representadas por numeros, de 0 a 15, cada numero repres
 | `7` | Verde Escuro |
 | `8` | Azul Escuro |
 | `9` | Azul |
-| `10 | Azul Claro |
-| `11 | Ciano |
+| `10` | Azul Claro |
+| `11` | Ciano |
 | `12` | Branco |
 | `13` | Cinza Claro |
 | `14` | Cinza |
@@ -453,13 +453,123 @@ function TIC()
 	end
 end
 ```
-O uso da **constante** (iremos aprender sobre isso mais tarde) `LARGURA` é para facilitar a edição do codigo.
+O uso da **constante** `LARGURA` é para facilitar a edição do codigo, iremos aprender mais sobre constantes mais tarde.
 
 ## Nomes de variaveis e constantes
+Nós já aprendemos sobre como usar variaveis, porem algo importante que devemos aprender é como nomear elas de uma maneira que evita erros e deixa o codigo mais facil de entender, aqui estão algumas regras e dicas para nomear variaveis:
 
+#### 1. Não use palavras reservadas
+Toda lingua de programação tem palavras reservadas, que são palavras que tem um significado especial para o computador, como o `if` e o `then` por exemplo, imagine o computador tentando entender esse codigo:
+```lua
+if = 10
+then = 20
 
+if if > then then
+	--codigo
+end
+```
+O computador não teria ideia doque fazer, pois o `if` e o `then` são palavras reservadas, então **não use palavras reservadas como nomes de variaveis**
 
+#### 2. Não coloque espaços
+Espaços são usados para separar palavras, então se você colocar um espaço no nome de uma variavel, o computador vai achar que a segunda palavra é outra variavel ou comando, veja esse exemplo:
+```lua
+variavel legal = 10
+```
+O computador vai ler a primeira palavra `variavel` perfeitamente, porem quando ele chegar no espaço, ele vai achar que a variavel acabou, então ele vai tentar ler a palavra `legal` como um comando, e vai dar erro, então **não use espaços no nome de variaveis**
 
+#### 3. CamelCase
+As vezes é necessario colocar mais de uma palavra em uma variavel, porem já vimos que isso é impossivel, para isso existe o `CamelCase`, que é uma convenção de nomear variaveis com mais de uma palavra, veja alguns exemplos
+| Nome | CamelCase |
+|--|--|
+| Nome do jogador | `nomeDoJogador` |
+| Vida do jogador | `vidaDoJogador` |
+| Posição x | `posicaoX` |
+| Posição y | `posicaoY` |
+
+O camelCase consiste em juntar todas as palavras e colocar a primeira letra de cada palavra em maiusculo, menos a primeira
+
+#### 4. Nomes curtos e descritivos
+A maneira que você nomeia suas variaveis ajuda muito na hora de criar coisas novas, pois mesmo que o computador entenda o codigo, você não vai entender oque ele faz, vamos ver um exemplo de um codigo completamente funcional, porem que ninguem entende:
+```lua
+v1 = 10
+v2 = 20
+v3 = 12
+v4 = 5
+v5 = 240
+function TIC()
+	v1 = v1 + 1
+	if v1 > v5 then
+		v1 = 0
+	end
+	circ(v1, v2, v3, v4)
+end
+```
+Esse codigo é completamente funcional, porem é dificil de entender, talvez você consiga deduzir oque ele faz pelo seu tamanho curto, porem imagina você tentar deduzir variaveis para um codigo com mais que 100 linhas, agora veja o mesmo codigo, porem com variaveis descritivas:
+```lua
+x = 10
+y = 20
+raio = 12
+cor = 5
+larguraTela = 240
+function TIC()
+	x = x + 1
+	if x > larguraTela then
+		x = 0
+	end
+	circ(x, y, raio, cor)
+end
+```
+
+Outra coisa para se analizar é o tamanho das variaveis, talvez você pense "Ah, mas eu posso usar `posicaoHorizontalDaBola`, porem imagina ter que escrever essa variavel toda vez que for usar ela, então tente achar um equilibrio entre o tamanho e a descrição da variavel, nesse exemplo, seria bom usar um nome como `x` ou se tiverem multiplas coisas que podem ter um "x" chamar de `bolaX`.
+
+#### 5. Mais regras de nomeação
+Existem outras regras de nomeação de variaveis, veja:
+
+1. **Não use acentos ou caracteres especiais** - O computador pode não entender esses caracteres, ou achar que um asterisco, por exemplo, é um simbolo de multiplicação, então por isso não use caracteres especiais (`ç á é ã @ # $ % & *`)
+
+2. **Não use numeros no começo** - O computador pode achar que você está tentando fazer uma operação matematica, então não use numeros no começo de uma variavel (`1vida`, `2nome`, `3x`)
+
+#### 6. Constantes
+Constantes são como variaveis, caixinhas que armazenam valores, porem elas são **constantes**, ou seja, ao contrario das variaveis, que são feitas para ter seu valor mudado varias vezes, as constantes são feitas para ter seu valor fixo, que é raramente ou nunca editado, para o computador variaveis e constantes são a mesma coisa, porem para o programador, elas tem um significado diferente, veja um exemplo de uma constante:
+```lua
+LARGURA_TELA = 240
+function TIC()
+	cls(0)
+	print("A largura da tela é ", 10, 10)
+	print(LARGURA_TELA, 10, 20)
+end
+```
+Para facilitar o reconhecimento delas, as constantes são nomeadas completamente em maiusculo, usando Underline(`_`) para separar palavras, isso é uma convenção, não uma regra, porem é bom seguir ela, pois ajuda a diferenciar variaveis de constantes
+
+Porem você deve estar pensando, quando é util usar constantes? Bem, constantes são uteis para valores que são usados varias vezes no codigo, como a largura da tela, a altura da tela, cores, etc... Porem, constantes são uteis para valores que são usados em varios lugares, pois se você precisar mudar o valor, você só precisa mudar em um lugar, e não em varios, veja um exemplo:
+```lua
+LARGURA_TELA = 240
+ALTURA_TELA = 136
+COR_FUNDO = 0
+function TIC()
+	cls(COR_FUNDO)
+end
+```
+Se você precisar mudar a cor do fundo, você só precisa mudar o valor de `COR_FUNDO`, e não em todos os `cls()`, isso é util para evitar erros e facilitar a edição do codigo
+
+Outro lugar que é util para constantes, neste caso especificamente para o TIC80 são as cores, pois as cores são representadas por numeros, e é dificil lembrar o numero de cada cor, então é bom usar constantes para isso, veja um exemplo:
+```lua
+PRETO = 0
+ROXO = 1
+VERMELHO = 2
+LARANJA = 3
+AMARELO = 4
+VERDE_CLARO = 5
+(...)
+
+function TIC()
+	cls(PRETO)
+	rect(10, 10, 40, 30, AMARELO)
+end
+```
+Dessa maneira, você pode usar o nome da cor ao inves do numero, oque deixa o codigo mais facil de entender, porem, você pode usar numeros se quiser, porem é bom usar constantes para facilitar a leitura do codigo
+
+## Botões
 
 
 
