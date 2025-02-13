@@ -582,6 +582,155 @@ Você provavelmente deve estar se perguntando "ok, eu sei como desenhar coisas, 
 Agora vamos ver com mais detalhe como usar essas interações
 
 ## Botões
+Como já visto antes, o TIC80 tem 8 botões, veja a lista deles e como apertar eles usando o teclado:
+| Botão | Tecla |
+|--|--|
+| `cima` | `[↑]` |
+| `baixo` | `[↓]` |
+| `esquerda` | `[←]` |
+| `direita` | `[→]` |
+| `A` | `[Z]` |
+| `B` | `[X]` |
+| `X` | `[A]` |
+| `Y` | `[S]` |
+
+Para usar esses botões, nós usamos a função `btn()`, veja a documentação dela digitando `help btn` no terminal:
+```
+---=== API ===---
+btn(id) -> pressed
+```
+| Parametro | Descrição | Valor padrão |
+|--|--|--|
+| `id` | ID do botão | Nenhuma |
+
+Essa função retorna se um botão especifico está sendo apertado, ela tem um parametro, `id`, que é o ID do botão que você quer verificar, para ver a tabela dos botões digite `help buttons` no terminal:
+
+| Ação | P1 | P2 | P3 | P4 |
+|--|--|--|--|--|
+| `Cima` | 0 | 8 | 16 | 24 |
+| `Baixo` | 1 | 9 | 17 | 25 |
+| `Esquerda` | 2 | 10 | 18 | 26 |
+| `Direita` | 3 | 11 | 19 | 27 |
+| `A` | 4 | 12 | 20 | 28 |
+| `B` | 5 | 13 | 21 | 29 |
+| `X` | 6 | 14 | 22 | 30 |
+| `Y` | 7 | 15 | 23 | 31 |
+
+Esses são os IDs que iremos usar para verificar se um botão está sendo apertado, vamos ver como isso funciona:
+```lua
+function TIC()
+	cls(0)
+	if btn(0) then
+		print("Cima esta sendo apertado", 10, 10)
+	end
+end
+```
+Nesse codigo, nós estamos verificando se o botão `0` (cima) está sendo apertado, já que iremos rodar o codigo **se** o botão estiver sendo apertado, nós usamos um `if`, agora rode o programa e tente apertar `[↑]`.
+
+Uma dica util quando você está usando botões, é usar constantes para os IDs, ao invez de escrever `if btn(0) then`, você pode escrever `if btn(BTN_CIMA)` por exemplo, isso deixa o codigo mais facil de entender, veja um exemplo:
+```lua
+BTN_CIMA = 0
+BTN_BAIXO = 1
+BTN_ESQUERDA = 2
+BTN_DIREITA = 3
+
+function TIC()
+	cls(0)
+	if btn(BTN_CIMA) then
+		print("Cima esta sendo apertado", 10, 10)
+	end
+end
+```
+
+### Exemplo pratico
+vamos fazer um exemplo pratico, onde controlamos um circulo usando o teclado, e quando ele passa da tela, ele volta do outro lado
+
+Primeiro, vamos definir as constantes e variaveis, vamos precisar da posição do circulo, então vamos criar duas variaveis chamadas `x` e `y`, alem disso vamos precisar de constantes para os botões e para o tamanho da tela:
+```lua
+BTN_CIMA = 0
+BTN_BAIXO = 1
+BTN_ESQUERDA = 2
+BTN_DIREITA = 3
+
+LARGURA_TELA = 240
+ALTURA_TELA = 136
+
+x = 64
+y = 64
+(...)
+```
+
+Agora, vamos fazer o codigo que controla o circulo, vamos fazer ele se mover para cima, baixo, esquerda e direita, lembrando que o **x** vai da esquerda para a direita e o **y** vai de cima para baixo: 
+```lua
+(...)
+function TIC()
+	cls(0)
+	--Verificando os botões
+	if btn(BTN_CIMA) then
+		y = y - 1 --diminuir o Y faz o circulo ir para cima
+	end
+	if btn(BTN_BAIXO) then
+		y = y + 1 --aumentar o Y faz o circulo ir para baixo
+	end
+	if btn(BTN_ESQUERDA) then
+		x = x - 1 --diminuir o X faz o circulo ir para a esquerda
+	end
+	if btn(BTN_DIREITA) then
+		x = x + 1 --aumentar o X faz o circulo ir para a direita
+	end
+(...)
+```
+
+Finalizando, nós precisamos verificar se o circulo passou da borda, podemos fazer isso verificando se a posição é maior que o tamanho da tela, ou menor que `0`, se for, nós mudamos a posição para o outro lado:
+```lua
+(...)
+	--verifica se o circulo passou da borda
+	if x > LARGURA_TELA then
+		x = 0
+	end
+	if x < 0 then
+		x = LARGURA_TELA
+	end
+
+	if y > ALTURA_TELA then
+		y = 0
+	end
+	if y < 0 then
+		y = ALTURA_TELA
+	end
+	circ(x, y, 16, 1) --desenha o circulo
+end
+```
+Aqui está o codigo completo:
+```lua
+BTN_CIMA = 0
+BTN_BAIXO = 1
+BTN_ESQUERDA = 2
+BTN_DIREITA = 3
+
+LARGURA_TELA = 240
+ALTURA_TELA = 136
+
+x = 64
+y = 64
+
+function TIC()
+	cls(0)
+	--Verificando os botões
+	if btn(BTN_CIMA) then
+		y = y - 1 --diminuir o Y faz o circulo ir para cima
+	end
+	if btn(BTN_BAIXO) then
+		y = y + 1 --aumentar o Y faz o circulo ir para baixo
+	end
+	if btn(BTN_ESQUERDA) then
+		x = x - 1 --diminuir o X faz o circulo ir para a esquerda
+	end
+	if btn(BTN_DIREITA) then
+		x = x + 1 --aumentar o X faz o circulo ir para a direita
+	end
+
+
 
 
 
