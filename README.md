@@ -643,95 +643,297 @@ end
 ```
 
 ### Exemplo pratico
-vamos fazer um exemplo pratico, onde controlamos um circulo usando o teclado, e quando ele passa da tela, ele volta do outro lado
-
-Primeiro, vamos definir as constantes e variaveis, vamos precisar da posição do circulo, então vamos criar duas variaveis chamadas `x` e `y`, alem disso vamos precisar de constantes para os botões e para o tamanho da tela:
+vamos fazer um exemplo pratico, onde controlamos um circulo usando as setas do teclado, veja o codigo:
 ```lua
-BTN_CIMA = 0
-BTN_BAIXO = 1
-BTN_ESQUERDA = 2
-BTN_DIREITA = 3
-
-LARGURA_TELA = 240
-ALTURA_TELA = 136
+CIMA = 0
+BAIXO = 1
+ESQUERDA = 2
+DIREITA = 3
 
 x = 64
 y = 64
-(...)
-```
 
-Agora, vamos fazer o codigo que controla o circulo, vamos fazer ele se mover para cima, baixo, esquerda e direita, lembrando que o **x** vai da esquerda para a direita e o **y** vai de cima para baixo: 
-```lua
-(...)
 function TIC()
 	cls(0)
-	--Verificando os botões
-	if btn(BTN_CIMA) then
-		y = y - 1 --diminuir o Y faz o circulo ir para cima
+	if btn(CIMA) then
+		y = y - 1 -- diminui o y para subir
 	end
-	if btn(BTN_BAIXO) then
-		y = y + 1 --aumentar o Y faz o circulo ir para baixo
+	if btn(BAIXO) then
+		y = y + 1 -- aumenta o y para descer
 	end
-	if btn(BTN_ESQUERDA) then
-		x = x - 1 --diminuir o X faz o circulo ir para a esquerda
+	if btn(ESQUERDA) then
+		x = x - 1 -- diminui o x para ir para a esquerda
 	end
-	if btn(BTN_DIREITA) then
-		x = x + 1 --aumentar o X faz o circulo ir para a direita
+	if btn(DIREITA) then
+		x = x + 1 -- aumenta o x para ir para a direita
 	end
-(...)
-```
-
-Finalizando, nós precisamos verificar se o circulo passou da borda, podemos fazer isso verificando se a posição é maior que o tamanho da tela, ou menor que `0`, se for, nós mudamos a posição para o outro lado:
-```lua
-(...)
-	--verifica se o circulo passou da borda
-	if x > LARGURA_TELA then
-		x = 0
-	end
-	if x < 0 then
-		x = LARGURA_TELA
-	end
-
-	if y > ALTURA_TELA then
-		y = 0
-	end
-	if y < 0 then
-		y = ALTURA_TELA
-	end
-	circ(x, y, 16, 1) --desenha o circulo
+	circ(x, y, 16, 1)
 end
 ```
-Aqui está o codigo completo:
-```lua
-BTN_CIMA = 0
-BTN_BAIXO = 1
-BTN_ESQUERDA = 2
-BTN_DIREITA = 3
+nós usamos as constantes para os IDs de botões para facilitar a leitura do codigo, e usamos um `if` para verificar se o botão está sendo apertado
 
-LARGURA_TELA = 240
-ALTURA_TELA = 136
+### `btnp()`
+Você ja conhece a função `btn()`, porem, ela tem um problema, ela retorna `true` sempre que o botão está sendo apertado, por exemplo, no codigo antigo, o codigo de movimentação era rodado 60 vezes por segundo, para mover para os lados isso é util, porem vamos pensar em um jogo de tiro, se você segurar o botão de tiro, o tiro sairia 60 vezes por segundo.
+Então para isso temos a função `btnp()`: 
+```
+---=== API ===---
+btnp(id hold=-1 period=-1) -> pressed
+```
+| Parametro | Descrição | Valor padrão |
+|--|--|--|
+| `id` | ID do botão | Nenhuma |
+| `hold` | Tempo que o botão deve ser apertado | `-1` |
+| `period` | Tempo entre os apertos | `-1` |
+
+Primeiramente, vamos usar essa função apenas com o primeiro parametro, veja:
+```lua
+DIREITA = 3
+
+x = 64
+
+function TIC()
+	cls(0)
+	if btnp(DIREITA) then
+		x = x + 5
+	end
+	circ(x, 64, 16, 1)
+end
+```
+Nesse codigo, nós estamos verificando se o botão `DIREITA` foi apertado, e se foi, nós movemos o circulo para a direta, porem, o circulo só se move uma vez, mesmo que você segure o botão, isso é util para ações que devem ser feitas uma vez, como pular, atirar ou abrir um menu.
+
+Agora vamos ver os dois outros parametros, `hold` e `period`, os dois andam lado a lado, se não tiver um, o outro não funciona.
+Eles servem para ter um efeito parecido com o teclado, onde se você segurar um botão, ele repete a ação, teste nessa caixa de texto:
+<textarea> </textarea>
+veja que quando você segura uma tecla, ela demora um pouco para começar a repetir, e depois ela repete a ação varias vezes, é mais ou menos isso que o `hold` e `period` fazem, veja um exemplo:
+```lua
+DIREITA = 3
+
+x = 64
+function TIC()
+	cls(0)
+	-- delay de 30frames (0.5 segundos)
+	-- e repete a cada 5 frames (0.083 segundos)
+	if btnp(DIREITA, 30, 5) then
+		x = x + 5
+	end
+	circ(x, 64, 16, 1)
+end
+```
+Nesse codigo, nós estamos verificando se o botão `DIREITA` foi apertado, e se foi, nós movemos o circulo para a direta, porem, depois de um tempo, ele começa a se mover rapidamente, similar ao exemplo do teclado repetindo as teclas
+
+## Teclado (`key()` e `keyp()`)s
+A maneira que o teclado funciona é bem parecida com os botões, só que agora, ao invez de ter 8 ids, temos **94**.
+Para ver a tabela dos IDs, digite `help keys` no terminal, veja a tabela:
+Essa é uma tabela apenas com as letras do alfabeto
+|Codigo|Tecla|Codigo|Tecla|
+|--|--|--|--|
+| 1 | A | 14 | N |
+| 2 | B | 15 | O |
+| 3 | C | 16 | P |
+| 4 | D | 17 | Q |
+| 5 | E | 18 | R |
+| 6 | F | 19 | S |
+| 7 | G | 20 | T |
+| 8 | H | 21 | U |
+| 9 | I | 22 | V |
+| 10 | J | 23 | W |
+| 11 | K | 24 | X |
+| 12 | L | 25 | Y |
+| 13 | M | 26 | Z |
+
+Para usar esse codigos fazemos a mesma coisa que com os botões veja:
+```lua
+function TIC()
+	cls(0)
+	if key(1) then
+		print("A esta sendo apertado", 10, 10)
+	end
+end
+```
+Quando usamos teclados, é comum tambem, usar constantes para os IDs, veja um exemplo:
+```lua
+W = 23
+A = 1
+S = 19
+D = 4
 
 x = 64
 y = 64
 
 function TIC()
 	cls(0)
-	--Verificando os botões
+	if key(W) then
+		y = y - 1
+	end
+	if key(S) then
+		y = y + 1
+	end
+	if key(A) then
+		x = x - 1
+	end
+	if key(D) then
+		x = x + 1
+	end
+	circ(x, y, 16, 1)
+end
+```
+Nesse codigo, nós controlamos um circulo usando **WASD**, veja que é bem parecido com os codigos dos botões.
+
+### `keyp()`
+Não irei explicar muito sobre essa função, pois ela é bem parecida com a `btnp()`, porem, ela é usada para teclados, veja a documentação dela:
+```
+---=== API ===---
+keyp(key hold=-1 period=-1) -> pressed
+```
+| Parametro | Descrição | Valor padrão |
+|--|--|--|
+| `key` | ID da tecla | Nenhuma |
+| `hold` | Tempo que a tecla deve ser apertada | `-1` |
+| `period` | Tempo entre os apertos | `-1` |
+
+A mesma coisa que o `btnp()`, porem para teclados, veja um exemplo:
+
+## Mouse (`mouse()`)
+A função mouse é diferente das outras funções de interação, ao invez de chamarmos ela com algum parametro, nós simplesmente chamamos ela e ela retorna todos os valores que iremos precisar
+```
+---=== API ===---
+mouse() -> x y left middle right 
+scrollx scrolly
+```
+Iremos usar uma tabela diferente, ao invez dos parametros, vamos listar os retornos dela
+| Retorno | Descrição |
+|--|--|
+| `x` | Posição X do mouse |
+| `y` | Posição Y do mouse |
+| `left` | Se o botão esquerdo do mouse está sendo apertado |
+| `middle` | Se o botão do meio do mouse está sendo apertado |
+| `right` | Se o botão direito do mouse está sendo apertado |
+| `scrollx` | Movimento horizontal do scroll do mouse |
+| `scrolly` | Movimento vertical do scroll do mouse |
+
+Vamos fazer um exemplo simples, onde criamos um circulo que segue o mouse
+```lua
+function TIC()
+	cls(0)
+	-- Pegamos os dois primeiros retornos
+	-- que são a posição X e Y do mouse
+	mx,my = mouse()
+
+	-- Desenhamos um circulo na posição do mouse
+	circ(mx, my, 16, 1)
+end
+```
+(colocar imagem aqui)
+Veja que nós pegamos os dois primeiros retornos da função `mouse()`, e usamos esses valores para desenhar o circulo.
+Agora, vamos fazer um exemplo mais complexo, onde criamos um circulo que segue o mouse, porem, ele só se move se o botão esquerdo do mouse estiver sendo apertado
+```lua
+-- Posições do circulo
+x = 64
+y = 64
+
+function TIC()
+	cls(0)
+	-- Pegamos os três primeiros retornos
+	-- que são a posição X e Y e se o botão esquerdo do mouse está sendo apertado
+	mx,my,mLeft = mouse()
+
+	-- Se o botão esquerdo do mouse estiver sendo apertado
+	if mLeft then
+		-- Movemos o circulo para a posição do mouse
+		x = mx
+		y = my
+	end
+
+	-- Desenhamos um circulo na posição do mouse
+	circ(x, y, 16, 1)
+end
+```
+Veja que agora, estamos pegando mais um valor da função `mouse()`, que é se o botão esquerdo do mouse está sendo apertado, nós guardamos esse valor na variavel `mLeft` (eu acho interessante chamar as variaveis do mouse com nomes que começam com `m` para facilitar) e depois usamos ela no `if`para verificar se temos que mover o circulo até o mouse
+
+
+A função mouse não possue uma versão de apertar uma vez, como o `btnp()` e o `keyp()`.
+
+## Desafio
+Agora que você aprendeu sobre interação com botões, teclado e mouse, crie um jogo onde você controla 3 circulos:
+- O primeiro circulo é controlado pelas setas do teclado
+- O segundo circulo é controlado pelas letras `WASD`
+- O terceiro circulo é controlado pelo mouse, e só se move se o botão esquerdo do mouse estiver sendo apertado
+
+Lembre-se dessas coisas:
+1. Use constantes para os IDs dos botões e teclas, para os botões use constantes com nomes tipo `BTN_CIMA`, para as teclas use constantes com nomes tipo `KEY_W`
+2. Use variaveis para guardar as posições dos circulos, aconcelho usar nomes tipo `x1`, `y1`, `x2`, `y2`, `x3`, `y3`
+3. Use `if` para verificar se os botões estão sendo apertados
+4. Não esqueca de usar `cls(0)` para limpar a tela
+
+> [!WARNING]
+> A seguir está uma solução para o desafio, tente fazer o desafio antes de ver a solução, a melhor maneira de aprender é tentando, porem sé precisar de ajuda, a solução está aqui
+
+```lua
+BTN_CIMA = 0
+BTN_BAIXO = 1
+BTN_ESQUERDA = 2
+BTN_DIREITA = 3
+
+KEY_W = 23
+KEY_A = 1
+KEY_S = 19
+KEY_D = 4
+
+x1 = 64
+y1 = 64
+
+x2 = 128
+y2 = 64
+
+x3 = 192
+y3 = 64
+
+function TIC()
+	cls(0)
+	-- Circulo controlado pelas setas
 	if btn(BTN_CIMA) then
-		y = y - 1 --diminuir o Y faz o circulo ir para cima
+		y1 = y1 - 1
 	end
 	if btn(BTN_BAIXO) then
-		y = y + 1 --aumentar o Y faz o circulo ir para baixo
+		y1 = y1 + 1
 	end
 	if btn(BTN_ESQUERDA) then
-		x = x - 1 --diminuir o X faz o circulo ir para a esquerda
+		x1 = x1 - 1
 	end
 	if btn(BTN_DIREITA) then
-		x = x + 1 --aumentar o X faz o circulo ir para a direita
+		x1 = x1 + 1
 	end
 
+	-- Circulo controlado pelas letras WASD
+	if key(KEY_W) then
+		y2 = y2 - 1
+	end
+	if key(KEY_S) then
+		y2 = y2 + 1
+	end
+	if key(KEY_A) then
+		x2 = x2 - 1
+	end
+	if key(KEY_D) then
+		x2 = x2 + 1
+	end
 
+	-- Circulo controlado pelo mouse
+	mx,my,mLeft = mouse()
+	if mLeft then
+		x3 = mx
+		y3 = my
+	end
 
+	circ(x1, y1, 16, 1)
+	circ(x2, y2, 16, 2)
+	circ(x3, y3, 16, 3)
+end
+```
+Este é um exemplo de como você pode fazer o desafio, se seu codigo ficou diferente está ok, cada programador programa de uma maneira, apenas se atente se seu codigo:
+1. Funciona
+2. É facil de entender
+3. Não tem erros
 
 
 
