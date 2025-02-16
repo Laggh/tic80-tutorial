@@ -935,9 +935,42 @@ Este é um exemplo de como você pode fazer o desafio, se seu codigo ficou difer
 2. É facil de entender
 3. Não tem erros
 
+## Tipos de Variaveis
+Até agora, nós estamos tratando todas as variaveis da mesma maneira, porem, existem alguns **tipos** de variaveis, que são usadas para guardar diferentes tipos de dados, como numeros, texto, etc... Vamos ver os tipos de variaveis mais comuns:
+1. **Numero**: Variaveis que guardam numeros, como `1`, `2`, `3.14`, `-10`, etc. Você só pode fazer contas usando esse tipo de variavel
+2. **Texto**: As chamadas `strings`, são variaveis que guardam texto, como `"Olá"`, `"Mundo"`, `"TIC80"`, etc. Você não pode fazer contas com esse tipo de variavel
+3. **Booleano**: Variaveis que guardam `true` ou `false`, são usadas nos `if` para verificar condições, como `vida >0` ou `btn(BTN_CIMA)` ou `mLeft`
+4. **Tabela**: Variaveis que guardam varios valores, iremos aprender mais sobre elas.
 
+### Numeros
+Numeros são os tipos de variaveis mais comuns, eles são usados para fazer contas, guardar posições, etc...
+```lua
+numero = 10
+numero2 = 3.14
+numero3 = -5
+```
+você pode fazer contas com numeros, como soma, subtração, multiplicação e divisão, veja um exemplo:
+```lua
+numero = 10
+numero2 = 5
+resultado = numero + numero2 -- 15
+resultado2 = numero - numero2 -- 5
+resultado3 = numero * numero2 -- 50
+resultado4 = numero / numero2 -- 2
+```
 
+Nós ja vimos quase tudo sobre numeros, porem, existe uma coisa que ainda não vimos, que é a ordem das operações, veja um exemplo:
+```lua
+resultado = 10 + 5 * 2
+```
+Você pode pensar que o resultado é `30` (somamos **10** com **5** e depois multiplicamos por **2**), porém, **Lua** segue as ordem das operações.
+Nesse caso, primeiro calculariamos `5 * 2`, que é `10`, e depois somariamos `10 + 10`, que é `20`, então o resultado é `20`.
 
+Para mudar a ordem das operações, você pode usar parenteses, veja:
+```lua
+resultado = (10 + 5) * 2
+```
+Nesse caso, primeiro somariamos `10 + 5`, que é `15`, e só depois multiplicariamos por `2`, que é `30`, então o resultado é `30`.
 
-
+### Texto
 
