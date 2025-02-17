@@ -941,7 +941,35 @@ Até agora, nós estamos tratando todas as variaveis da mesma maneira, porem, ex
 2. **Texto**: As chamadas `strings`, são variaveis que guardam texto, como `"Olá"`, `"Mundo"`, `"TIC80"`, etc. Você não pode fazer contas com esse tipo de variavel
 3. **Booleano**: Variaveis que guardam `true` ou `false`, são usadas nos `if` para verificar condições, como `vida >0` ou `btn(BTN_CIMA)` ou `mLeft`
 4. **Tabela**: Variaveis que guardam varios valores, iremos aprender mais sobre elas.
+5. **nulo**: Variaveis que não tem valor, são usadas para dizer que uma variavel não tem valor
 
+> Para ver o tipo de uma variavel, você pode usar a função `type()`, que retorna o tipo da variavel:
+```lua
+numero = 10
+texto = "Olá"
+booleano = true
+tabela = {1, 2, 3} --- veremos mais sobre tabelas mais tarde
+nulo = nil -- veremos mais sobre nulos depois
+
+function TIC()
+	cls(0)
+	print(type(numero), 10, 10)
+	print(type(texto), 10, 20)
+	print(type(booleano), 10, 30)
+	print(type(tabela), 10, 40)
+	print(type(nulo), 10, 50)
+end
+```
+A saida desse codigo será
+```
+number
+string
+boolean
+table
+nil
+```
+
+Agora vamos ver mais sobre cada tipo de variavel
 ### Numeros
 Numeros são os tipos de variaveis mais comuns, eles são usados para fazer contas, guardar posições, etc...
 ```lua
@@ -973,4 +1001,60 @@ resultado = (10 + 5) * 2
 Nesse caso, primeiro somariamos `10 + 5`, que é `15`, e só depois multiplicariamos por `2`, que é `30`, então o resultado é `30`.
 
 ### Texto
+
+As variaveis de texto são chamadas de strings, e são usadas para guardar textos, por enquanto apenas usamos elas para desenhar textos especificos, porem elas tamem podem ser alteradas como os numeros, veja um exemplo:
+```lua
+nome = "João"
+
+function TIC()
+	cls(0)
+	print("Olá, meu nome é "..nome, 10, 10)
+end
+```
+Esse codigo ira escrever, "Olá, meu nome é João" meu nome é Renan, porem, você pode mudar o valor de `nome` para qualquer coisa, tente mudar o valor de `nome` para **outro texto** e veja o resultado
+Agora tente mudar para um numero, veja o resultado
+Ocorreu um erro, isso é porque você não pode **Concatenar** (juntar) um numero com um texto.
+
+Porem vamos pensar mais no sinal `..` ele é usado para **concatação** de duas strings, isso faz com que se você tente concatenar um numero com um texto, um erro acontecerá, para isso usamos uma função chamada `tostring()` que converte um numero para uma string:
+```lua
+texto = "Ola"
+numero = 10
+
+textoJunto  = texto..numero -- ERRO (não podemos concatenar strings com numeros)
+
+textoJunto = texto..tostring(numero) -- "Ola10"
+```
+
+Tipicamente juntamos textos usando concatenação (`..`), porem as vezes usar concatenação fica muito feio e dificil de entender:
+```lua	
+texto = "Ola, eu sou "..nome.." e tenho "..idade.." anos"
+```
+Para resolver isso, podemos usar **formatação de strings**, que é uma maneira de juntar textos e variaveis de uma maneira mais facil de entender:
+```lua
+texto = string.format("Ola, eu sou %s e tenho %s anos", nome, idade)
+```
+Nesse caso, `%s` é um **placeholder**, (um lugar onde você coloca algo), e o `string.format()` é uma função que **formata** a string, substituindo os placeholders em ordem pelos valores que você passa depois:
+```lua
+function TIC()
+	cls(0)
+	mx,my = mouse()
+	texto = string.format("O mouse esta em %s, %s", mx, my)
+	print(texto, 10, 10)
+end
+```
+A saida desse codigo será algo como `O mouse esta em 12, 32`, onde `12` e `32` são as posições do mouse
+
+> Existem outros placeholders, como `%d` para numeros, `%f` para numeros com ponto flutuante, `%x` para numeros em hexadecimal, nós tipicamentes usamos o %s pois ele converte qualquer coisa para uma string
+
+### Booleanos
+Booleanos são variaveis que guardam `true` ou `false`, você pode achar que isso é inutil, porem eles servem para verificar condições, nós ja usamos eles nos nossos ifs, como `if btn(BTN_CIMA) then`, onde se estiver sendo apertado, ele retorna `true`, se não, ele retorna `false`, veja alguns exemplos de booleanos:
+```lua
+verdade = true
+mentira = false
+verifica = 10 > 5 -- true
+verifica2 = 10 < 5 -- false
+
+DESENHAR_FUNDO = true
+```
+
 
